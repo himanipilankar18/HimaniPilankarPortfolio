@@ -1,0 +1,176 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--accent);
+  --color-success: var(--success);
+
+  --font-serif: "Playfair Display", "Bodoni Moda", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Midnight Navy + Copper — dark mode (default) */
+:root {
+  --radius: 0.5rem;
+
+  --background: #07111f;
+  --surface: #0f172a;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --foreground: #f8fafc;
+  --muted-foreground: #94a3b8;
+
+  --primary: #c47a3f;
+  --primary-foreground: #07111f;
+  --secondary: #122036;
+  --secondary-foreground: #f8fafc;
+  --accent: #c47a3f;
+  --accent-hover: #d58b52;
+  --accent-foreground: #07111f;
+  --destructive: oklch(0.62 0.18 25);
+  --success: oklch(0.72 0.14 150);
+
+  --border: rgba(196, 122, 63, 0.15);
+  --hairline: rgba(196, 122, 63, 0.22);
+
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 30px 80px -40px rgba(0, 0, 0, 0.7);
+  --shadow-frame: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 60px -30px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 60px -20px rgba(196, 122, 63, 0.35);
+
+  --grad-primary: linear-gradient(135deg, #c47a3f, #8e5424);
+  --grad-aurora:
+    radial-gradient(60% 60% at 20% 10%, rgba(196, 122, 63, 0.08), transparent 60%),
+    radial-gradient(50% 50% at 80% 20%, rgba(196, 122, 63, 0.05), transparent 60%);
+}
+
+.light {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+
+  --primary: #b86a2f;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f7;
+  --secondary-foreground: #0f172a;
+  --accent: #b86a2f;
+  --accent-hover: #c47a3f;
+  --accent-foreground: #ffffff;
+
+  --border: rgba(184, 106, 47, 0.18);
+  --hairline: rgba(184, 106, 47, 0.28);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 700px at 85% -10%, rgba(196, 122, 63, 0.06), transparent 60%),
+      radial-gradient(900px 600px at -10% 30%, rgba(196, 122, 63, 0.04), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background: rgba(196, 122, 63, 0.28);
+    color: var(--foreground);
+  }
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(248, 250, 252, 0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+}
+
+@utility hairline {
+  background-image: linear-gradient(to right, transparent, var(--hairline), transparent);
+  height: 1px;
+}
+
+/* Engineering grid overlay — replaces topo contours */
+@utility topo {
+  background-image:
+    linear-gradient(rgba(196, 122, 63, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 122, 63, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+}
+
+@utility grid-fine {
+  background-image:
+    linear-gradient(rgba(248, 250, 252, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 250, 252, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
