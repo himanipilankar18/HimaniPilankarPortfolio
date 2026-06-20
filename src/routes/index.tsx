@@ -1,23 +1,24 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Download, Github, Linkedin, Mail } from "lucide-react";
 
-import heroAvatar from "@/assets/hero-avatar.png";
+import portraitImage from "../../pp_for_portfoliowebsite-withoutbg.png";
 import { FilmStrip } from "@/components/site/film-strip";
 import { projects } from "@/lib/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Himani's Portfolio" },
+      { title: "Himani Pilankar | Portfolio" },
       {
         name: "description",
         content:
-          "A documentary archive of projects, research, and creative explorations from a computer engineering student.",
+          "Computer Engineering student at SPIT with a passion for full-stack development, artificial intelligence, and solving real-world problems through projects.",
       },
-      { property: "og:title", content: "Himani's Portfolio" },
+      { property: "og:title", content: "Himani Pilankar | Portfolio" },
       {
         property: "og:description",
-        content: "A documentary archive of projects, research, and creative explorations.",
+        content:
+          "Computer Engineering student at SPIT building full-stack and AI projects with a focus on real-world problem solving.",
       },
     ],
   }),
@@ -46,44 +47,79 @@ function IndexPage() {
           }}
         />
 
-        <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-10 px-5 pb-20 pt-40 sm:px-8 md:grid-cols-[1.05fr_1fr] md:gap-6 md:pt-44">
-          <div className="relative z-10">
-            <div className="flex items-center gap-3">
-              <span
-                className="block h-px w-8"
-                style={{ background: "var(--accent)", opacity: 0.7 }}
-              />
-              <span className="label-mono">Field Notes · Vol. I</span>
+        <div className="relative mx-auto grid min-h-[100svh] max-w-[90rem] grid-cols-1 items-center gap-12 px-5 pb-16 pt-24 sm:px-6 md:gap-8 md:px-8 md:pb-20 md:pt-32 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="relative z-10 mt-8 max-w-[42rem] md:mt-0">
+            <div className="mb-5">
+              <p className="font-serif text-[22px] text-foreground sm:text-[26px] md:text-[34px]">
+                Hi, I&apos;m <span className="italic">Himani Pilankar</span>
+              </p>
             </div>
-            <h1 className="mt-6 font-serif text-5xl leading-[1.02] tracking-tight text-foreground sm:text-6xl md:text-[80px]">
-              I am <span className="italic">Himani</span>,
-              <span className="mt-3 block text-foreground/90">
-                an engineer documenting <span className="italic text-accent">the journey</span>.
+
+            <h1 className="font-serif leading-[0.95] tracking-tight text-foreground text-[42px] sm:text-[52px] md:text-[60px] lg:text-[64px]">
+              a developer who loves to
+              <span className="mt-2 block italic text-accent">
+                solve real world problems.
               </span>
             </h1>
-            <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-muted-foreground">
-              Computer engineering student. Builder of full-stack systems, AI-assisted experiences,
-              and thoughtful products, kept as field notes from an ongoing expedition through
-              software.
-            </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#archive"
-                className="group inline-flex items-center gap-2 rounded-full border border-accent/60 bg-accent/10 px-5 py-3 text-sm font-medium text-foreground transition-all duration-500 hover:bg-accent/20"
-              >
-                Open the archive
-                <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-              <a
-                href="/resume.pdf"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/40 px-5 py-3 text-sm font-medium text-muted-foreground backdrop-blur-xl transition-colors hover:text-foreground"
-              >
-                Resume
-              </a>
+            <div className="mt-6 max-w-2xl space-y-4 text-[16px] leading-relaxed text-muted-foreground sm:text-[17px] md:text-[19px]">
+              <p>
+                Computer Engineering student at SPIT with a passion for full-stack development and
+                Artificial Intelligence.
+              </p>
+              <p>
+                I enjoy transforming ideas into applications, participating in hackathons, and
+                continuously learning through projects and exploration.
+              </p>
             </div>
 
-            <div className="mt-10 flex items-center gap-5 text-muted-foreground">
+            <div className="mt-8 flex flex-wrap gap-2 sm:gap-3">
+              {[
+                { value: "10+", label: "Projects" },
+                { value: "3+", label: "Hackathons" },
+                { value: "AI + Full Stack", label: "Focus" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-full border border-border bg-card/55 px-3 py-2 sm:px-4 sm:py-3">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-accent">
+                      {stat.value}
+                    </span>
+
+                    <span className="text-[15px] font-medium text-foreground">
+                      {stat.label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                to="/projects"
+                className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-accent/60 bg-[rgba(212,164,77,0.05)] px-6 py-3 text-[15px] font-medium text-foreground transition-all duration-300 hover:bg-[rgba(212,164,77,0.10)]"
+              >
+                View Projects
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+
+              <a
+                href="/resume.pdf"
+                className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-accent/35 bg-[rgba(212,164,77,0.03)] px-6 py-3 text-[15px] font-medium text-foreground transition-all duration-300 hover:border-accent/60"
+              >
+                <Download className="size-4" />
+                Download Resume
+              </a>
+
+              <Link
+                to="/contact"
+                className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-accent/35 bg-[rgba(212,164,77,0.03)] px-6 py-3 text-[15px] font-medium text-foreground transition-all duration-300 hover:border-accent/60"
+              >
+                Let's Connect
+              </Link>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-muted-foreground">
               <a
                 href="https://github.com/"
                 target="_blank"
@@ -91,7 +127,7 @@ function IndexPage() {
                 aria-label="GitHub"
                 className="transition-colors hover:text-foreground"
               >
-                <Github className="size-[18px]" />
+                <Github className="size-5 sm:size-6" />
               </a>
               <a
                 href="https://linkedin.com/"
@@ -100,47 +136,53 @@ function IndexPage() {
                 aria-label="LinkedIn"
                 className="transition-colors hover:text-foreground"
               >
-                <Linkedin className="size-[18px]" />
+                <Linkedin className="size-5 sm:size-6" />
               </a>
               <a
                 href="mailto:hello@himani.dev"
                 aria-label="Email"
                 className="transition-colors hover:text-foreground"
               >
-                <Mail className="size-[18px]" />
+                <Mail className="size-5 sm:size-6" />
               </a>
               <span className="font-mono text-[10px] uppercase tracking-[0.24em]">
-                India · open to internships
+                Open to opportunities
               </span>
             </div>
           </div>
 
           <div className="relative">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-[560px]">
+            <div className="relative mx-auto flex h-[320px] w-full max-w-[320px] items-center justify-center sm:h-[420px] sm:max-w-[420px] md:h-[520px] md:max-w-[520px] lg:h-[600px] lg:max-w-[560px]">
+              {/* Outer Glow */}
               <div
-                aria-hidden
-                className="absolute inset-x-10 bottom-10 top-16 rounded-[40%] opacity-70 blur-3xl"
+                className="absolute h-[220px] w-[220px] sm:h-[320px] sm:w-[320px] md:h-[420px] md:w-[420px] rounded-full blur-3xl opacity-40"
                 style={{
                   background:
-                    "radial-gradient(closest-side, rgba(212,164,77,0.32), transparent 70%)",
+                    "radial-gradient(circle, rgba(212,164,77,0.22), transparent 70%)",
                 }}
               />
-              <FloatingFragments />
 
-              <img
-                src={heroAvatar}
-                alt="Editorial illustration of Himani at work"
-                width={1080}
-                height={1440}
-                className="relative h-full w-full object-contain object-bottom drop-shadow-[0_30px_60px_rgba(0,0,0,0.65)]"
-                style={{ filter: "saturate(0.85) hue-rotate(-8deg) contrast(1.02)" }}
+              {/* Copper Ring */}
+              <div
+                className="absolute h-[240px] w-[240px] sm:h-[340px] sm:w-[340px] md:h-[450px] md:w-[450px] rounded-full"
+                style={{
+                  border: "10px solid rgba(212,164,77,0.55)",
+                }}
               />
+
+              {/* Portrait */}
+              <img
+                src={portraitImage}
+                alt="Himani Pilankar"
+                className="relative z-10 h-[280px] object-contain sm:h-[380px] md:h-[480px] lg:h-[520px]" />
+
+              <FloatingMotivationCard />
             </div>
           </div>
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground/70">
             Scroll · the route continues
           </span>
         </div>
@@ -207,60 +249,18 @@ function IndexPage() {
   );
 }
 
-function FloatingFragments() {
+function FloatingMotivationCard() {
   return (
-    <>
-      <div
-        aria-hidden
-        className="absolute left-[2%] top-[18%] hidden w-[200px] -rotate-3 rounded-sm border border-border bg-card/80 p-3 font-mono text-[10px] leading-relaxed text-muted-foreground shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl md:block"
-      >
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-[9px] uppercase tracking-[0.22em] text-accent/80">Entry 14</span>
-          <span className="text-[9px] text-muted-foreground/70">2026·06</span>
-        </div>
-        <div className="font-serif text-[12px] italic text-foreground/90">
-          &quot;Build calmly. Document everything.&quot;
-        </div>
+    <div className="absolute left-[5%] top-[10%] rotate-[-4deg] hidden rounded-2xl border border-border bg-card/82 p-4 shadow-[0_20px_50px_-26px_rgba(0,0,0,0.9)] backdrop-blur-xl md:block">
+      <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-accent/85">
+        Field Note
       </div>
-
-      <svg
-        aria-hidden
-        className="absolute right-[-2%] top-[12%] hidden h-[140px] w-[140px] md:block"
-        viewBox="0 0 100 100"
-        fill="none"
-      >
-        <circle cx="50" cy="50" r="44" stroke="var(--accent)" strokeOpacity="0.45" />
-        <circle
-          cx="50"
-          cy="50"
-          r="32"
-          stroke="var(--accent)"
-          strokeOpacity="0.2"
-          strokeDasharray="2 4"
-        />
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((degrees) => (
-          <line
-            key={degrees}
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="8"
-            stroke="var(--accent)"
-            strokeOpacity={degrees % 90 === 0 ? 0.5 : 0.2}
-            transform={`rotate(${degrees} 50 50)`}
-          />
-        ))}
-        <path d="M50 14 L54 50 L50 46 L46 50 Z" fill="var(--accent)" opacity="0.9" />
-        <circle cx="50" cy="50" r="2" fill="var(--accent)" />
-      </svg>
-
-      <div
-        aria-hidden
-        className="absolute bottom-[18%] left-[-2%] hidden rounded-full border border-border bg-card/80 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground backdrop-blur-xl md:block"
-      >
-        <span className="mr-1.5 inline-block size-1.5 translate-y-[-1px] rounded-full bg-accent" />
-        28.6139° N · 77.2090° E
+      <div className="mt-3 space-y-1 font-serif text-[15px] italic leading-tight text-foreground/92">
+        <div>Learn.</div>
+        <div>Build.</div>
+        <div>Improve.</div>
+        <div>Repeat.</div>
       </div>
-    </>
+    </div>
   );
 }

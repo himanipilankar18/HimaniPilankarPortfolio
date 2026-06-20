@@ -10,20 +10,30 @@ type Destination = {
     | "/about"
     | "/skills"
     | "/projects"
+    | "/hackathons"
     | "/experience"
     | "/creative"
-    | "/explorations"
     | "/contact";
 };
 
 const DESTINATIONS: Destination[] = [
-  { id: "origin", label: "Origin", kicker: "I", to: "/" },
-  { id: "foundations", label: "Foundations", kicker: "II", to: "/about" },
+  { id: "home", label: "Home", kicker: "I", to: "/" },
+  { id: "about", label: "About", kicker: "II", to: "/about" },
   { id: "skills", label: "Skills", kicker: "III", to: "/skills" },
   { id: "projects", label: "Projects", kicker: "IV", to: "/projects" },
-  { id: "experiences", label: "Experiences", kicker: "V", to: "/experience" },
-  { id: "creative", label: "Creative Work", kicker: "VI", to: "/creative" },
-  { id: "explorations", label: "Explorations", kicker: "VII", to: "/explorations" },
+  {
+    id: "cocurricular",
+    label: "CoCurricular",
+    kicker: "V",
+    to: "/hackathons",
+  },
+  { id: "experience", label: "Experience", kicker: "VI", to: "/experience" },
+  {
+    id: "beyond-tech",
+    label: "Beyond Tech",
+    kicker: "VII",
+    to: "/creative",
+  },
   { id: "contact", label: "Contact", kicker: "VIII", to: "/contact" },
 ];
 
@@ -54,25 +64,19 @@ export function SiteNav() {
         className="absolute inset-0 backdrop-blur-xl"
         style={{
           background:
-            "linear-gradient(to bottom, color-mix(in oklab, var(--background) 80%, transparent), color-mix(in oklab, var(--background) 40%, transparent) 70%, transparent)",
+            "linear-gradient(to bottom, color-mix(in oklab, var(--background) 82%, transparent), color-mix(in oklab, var(--background) 44%, transparent) 70%, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-7xl px-5 py-4 sm:px-8">
-        <div className="flex items-center justify-between gap-6">
-          <Link to="/" className="group flex shrink-0 items-center gap-2.5">
-            <Compass />
-            <span className="font-serif text-[15px] tracking-tight text-foreground">
-              himani<span className="text-muted-foreground/80">.dev</span>
-            </span>
+      <div className="relative mx-auto max-w-[80rem] px-4 py-2 sm:px-5 md:px-6">
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            to="/"
+            className="shrink-0 font-serif text-[24px] font-medium tracking-tight text-foreground"
+          >
+            Himani Pilankar
           </Link>
 
           <RouteLine activeIndex={activeIndex} />
-
-          <div className="hidden shrink-0 items-center gap-2 md:flex">
-            <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground/70">
-              Vol. I · MMXXVI
-            </span>
-          </div>
         </div>
 
         <MobileRouteNavigator activeIndex={activeIndex} />
@@ -83,12 +87,12 @@ export function SiteNav() {
 }
 
 function RouteLine({ activeIndex }: { activeIndex: number }) {
-  const width = 720;
-  const height = 56;
-  const paddingX = 20;
+  const width = 760;
+  const height = 40;
+  const paddingX = 24;
   const innerWidth = width - paddingX * 2;
   const step = innerWidth / (DESTINATIONS.length - 1);
-  const yMid = height / 2 + 6;
+  const yMid = height / 2 + 1;
 
   const points = DESTINATIONS.map((_, index) => ({ x: paddingX + index * step, y: yMid }));
   const path = points
@@ -97,12 +101,12 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
   const beacon = points[activeIndex];
 
   return (
-    <nav aria-label="Exploration route" className="relative hidden flex-1 justify-center md:flex">
+    <nav aria-label="Journey navigation" className="relative hidden flex-1 justify-center md:flex">
       <div className="relative">
         <svg
           width={width}
-          height={height + 18}
-          viewBox={`0 0 ${width} ${height + 18}`}
+          height={height + 24}
+          viewBox={`0 0 ${width} ${height + 24}`}
           className="overflow-visible"
         >
           <path d={path} stroke="var(--border)" strokeWidth={1} fill="none" />
@@ -112,8 +116,8 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
               .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
               .join(" ")}
             stroke="var(--accent)"
-            strokeOpacity={0.55}
-            strokeWidth={1.25}
+            strokeOpacity={0.58}
+            strokeWidth={1.35}
             fill="none"
             style={{ transition: "all 900ms cubic-bezier(0.22, 1, 0.36, 1)" }}
           />
@@ -124,10 +128,10 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
             return (
               <g key={DESTINATIONS[index].id} transform={`translate(${point.x} ${point.y})`}>
                 <circle
-                  r={isActive ? 4 : 2.5}
+                  r={isActive ? 4 : 2.6}
                   fill={isActive ? "var(--accent)" : "var(--background)"}
                   stroke={isActive ? "var(--accent)" : "var(--muted-foreground)"}
-                  strokeOpacity={isActive ? 1 : 0.45}
+                  strokeOpacity={isActive ? 1 : 0.52}
                   strokeWidth={1}
                   style={{ transition: "all 700ms cubic-bezier(0.22, 1, 0.36, 1)" }}
                 />
@@ -155,7 +159,7 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
               <li
                 key={destination.id}
                 className="pointer-events-auto absolute -translate-x-1/2"
-                style={{ left: point.x, top: height + 2 }}
+                style={{ left: point.x, top: height + 1 }}
               >
                 <Link
                   to={destination.to}
@@ -165,10 +169,11 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
                   <span
                     className="font-serif italic transition-all duration-700"
                     style={{
-                      fontSize: isActive ? 13 : 11,
+                      fontSize: isActive ? 16: 14,
+                      fontWeight: isActive ? 600 : 500,
                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
-                      letterSpacing: isActive ? "0" : "0.01em",
-                      opacity: isActive ? 1 : 0.78,
+                      letterSpacing: isActive ? "0" : "0.005em",
+                      opacity: isActive ? 1 : 0.86,
                     }}
                   >
                     {destination.label}
@@ -185,13 +190,13 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
 
 function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
   return (
-    <div className="mt-3 md:hidden">
+    <div className="mt-2.5 md:hidden">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <div className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted-foreground/80">
             Currently
           </div>
-          <div className="truncate font-serif italic text-base text-foreground">
+          <div className="truncate font-serif italic text-[17px] font-medium text-foreground">
             {DESTINATIONS[activeIndex].label}
           </div>
         </div>
@@ -200,7 +205,7 @@ function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
         </span>
       </div>
 
-      <div className="-mx-1 mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="-mx-1 mt-2.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <ul className="flex w-max items-center gap-4 px-1">
           {DESTINATIONS.map((destination, index) => {
             const isActive = index === activeIndex;
@@ -219,7 +224,7 @@ function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
                     }}
                   />
                   <span
-                    className="font-mono text-[9px] uppercase tracking-[0.22em]"
+                    className="font-mono text-[9px] font-medium uppercase tracking-[0.18em]"
                     style={{
                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
                     }}
@@ -240,17 +245,6 @@ function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
         </ul>
       </div>
     </div>
-  );
-}
-
-function Compass() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="12" r="9.5" stroke="var(--accent)" strokeOpacity="0.5" />
-      <circle cx="12" cy="12" r="1.3" fill="var(--accent)" />
-      <path d="M12 4.5 L13.4 11 L12 12.5 L10.6 11 Z" fill="var(--accent)" opacity="0.9" />
-      <path d="M12 19.5 L13.2 13.5 L12 12.5 L10.8 13.5 Z" fill="var(--foreground)" opacity="0.55" />
-    </svg>
   );
 }
 
@@ -327,7 +321,6 @@ export function SiteFooter() {
           <span className="font-mono">
             &copy; {new Date().getFullYear()} Himani · Field notes from an engineer&apos;s journey.
           </span>
-          <span className="font-mono">Vol. I · MMXXVI</span>
         </div>
       </div>
     </footer>
