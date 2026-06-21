@@ -1,19 +1,20 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useMemo } from "react";
-
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 type Destination = {
   id: string;
   label: string;
   kicker: string;
   to:
-    | "/"
-    | "/about"
-    | "/skills"
-    | "/projects"
-    | "/hackathons"
-    | "/experience"
-    | "/creative"
-    | "/contact";
+  | "/"
+  | "/about"
+  | "/skills"
+  | "/projects"
+  | "/hackathons"
+  | "/experience"
+  | "/creative"
+  | "/contact";
 };
 
 const DESTINATIONS: Destination[] = [
@@ -38,7 +39,11 @@ const DESTINATIONS: Destination[] = [
 ];
 
 export function SiteNav() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const activeIndex = useMemo(() => {
     let bestIndex = 0;
@@ -76,10 +81,47 @@ export function SiteNav() {
             Himani Pilankar
           </Link>
 
-          <RouteLine activeIndex={activeIndex} />
+          <>
+            <RouteLine activeIndex={activeIndex} />
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="flex items-center justify-center rounded-full border border-border bg-card/70 p-2 backdrop-blur-xl min-[1000px]:hidden"
+              aria-label="Toggle navigation"
+            >
+              {mobileMenuOpen ? (
+                <X className="size-5" />
+              ) : (
+                <Menu className="size-5" />
+              )}
+            </button>
+          </>
         </div>
 
-        <MobileRouteNavigator activeIndex={activeIndex} />
+        <div className="min-[1000px]:hidden">
+          {mobileMenuOpen && (
+            <div className="mt-3 rounded-2xl border border-border bg-card/90 p-3 backdrop-blur-xl">
+              <div className="flex flex-col gap-1">
+                {DESTINATIONS.map((destination) => (
+                  <Link
+                    key={destination.id}
+                    to={destination.to}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between rounded-xl px-3 py-3 transition-colors hover:bg-white/5"
+                  >
+                    <span className="font-serif text-[17px]">
+                      {destination.label}
+                    </span>
+
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {destination.kicker}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className="hairline relative" />
     </header>
@@ -101,7 +143,10 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
   const beacon = points[activeIndex];
 
   return (
-    <nav aria-label="Journey navigation" className="relative hidden flex-1 justify-center md:flex">
+    <nav
+      aria-label="Journey navigation"
+      className="relative hidden flex-1 justify-center min-[1000px]:flex"
+    >
       <div className="relative">
         <svg
           width={width}
@@ -169,7 +214,7 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
                   <span
                     className="font-serif italic transition-all duration-700"
                     style={{
-                      fontSize: isActive ? 16: 14,
+                      fontSize: isActive ? 16 : 14,
                       fontWeight: isActive ? 600 : 500,
                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
                       letterSpacing: isActive ? "0" : "0.005em",
@@ -188,65 +233,65 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
   );
 }
 
-function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
-  return (
-    <div className="mt-2.5 md:hidden">
-      <div className="flex items-center justify-between gap-3">
-        <div className="min-w-0">
-          <div className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted-foreground/80">
-            Currently
-          </div>
-          <div className="truncate font-serif italic text-[17px] font-medium text-foreground">
-            {DESTINATIONS[activeIndex].label}
-          </div>
-        </div>
-        <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          {DESTINATIONS[activeIndex].kicker} / VIII
-        </span>
-      </div>
+// function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
+//   return (
+//     <div className="mt-2.5 lg:hidden">
+//       <div className="flex items-center justify-between gap-3">
+//         <div className="min-w-0">
+//           <div className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted-foreground/80">
+//             Currently
+//           </div>
+//           <div className="truncate font-serif italic text-[17px] font-medium text-foreground">
+//             {DESTINATIONS[activeIndex].label}
+//           </div>
+//         </div>
+//         <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+//           {DESTINATIONS[activeIndex].kicker}
+//         </span>
+//       </div>
 
-      <div className="-mx-1 mt-2.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <ul className="flex w-max items-center gap-4 px-1">
-          {DESTINATIONS.map((destination, index) => {
-            const isActive = index === activeIndex;
+//       <div className="-mx-1 mt-2.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+//         <ul className="flex w-max items-center gap-4 px-1">
+//           {DESTINATIONS.map((destination, index) => {
+//             const isActive = index === activeIndex;
 
-            return (
-              <li key={destination.id} className="flex items-center gap-4">
-                <Link to={destination.to} className="flex flex-col items-center gap-1">
-                  <span
-                    className="block size-[7px] rounded-full transition-all"
-                    style={{
-                      background: isActive ? "var(--accent)" : "transparent",
-                      border: isActive
-                        ? "1px solid var(--accent)"
-                        : "1px solid color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
-                      boxShadow: isActive ? "0 0 0 5px rgba(212,164,77,0.10)" : "none",
-                    }}
-                  />
-                  <span
-                    className="font-mono text-[9px] font-medium uppercase tracking-[0.18em]"
-                    style={{
-                      color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
-                    }}
-                  >
-                    {destination.label}
-                  </span>
-                </Link>
-                {index < DESTINATIONS.length - 1 ? (
-                  <span
-                    aria-hidden
-                    className="block h-px w-6"
-                    style={{ background: "var(--border)" }}
-                  />
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
-  );
-}
+//             return (
+//               <li key={destination.id} className="flex items-center gap-4">
+//                 <Link to={destination.to} className="flex flex-col items-center gap-1">
+//                   <span
+//                     className="block size-[7px] rounded-full transition-all"
+//                     style={{
+//                       background: isActive ? "var(--accent)" : "transparent",
+//                       border: isActive
+//                         ? "1px solid var(--accent)"
+//                         : "1px solid color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
+//                       boxShadow: isActive ? "0 0 0 5px rgba(212,164,77,0.10)" : "none",
+//                     }}
+//                   />
+//                   <span
+//                     className="font-mono text-[9px] font-medium uppercase tracking-[0.18em]"
+//                     style={{
+//                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
+//                     }}
+//                   >
+//                     {destination.label}
+//                   </span>
+//                 </Link>
+//                 {index < DESTINATIONS.length - 1 ? (
+//                   <span
+//                     aria-hidden
+//                     className="block h-px w-6"
+//                     style={{ background: "var(--border)" }}
+//                   />
+//                 ) : null}
+//               </li>
+//             );
+//           })}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// }
 
 export function SiteFooter() {
   return (
