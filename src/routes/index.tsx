@@ -47,7 +47,7 @@ function IndexPage() {
           }}
         />
 
-        <div className="relative mx-auto grid min-h-[100svh] max-w-[90rem] grid-cols-1 items-center gap-12 px-5 pb-16 pt-24 sm:px-6 md:gap-8 md:px-8 md:pb-20 md:pt-32 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="relative mx-auto grid min-h-[100svh] max-w-[90rem] grid-cols-1 items-center gap-12 px-5 pb-16 pt-32 sm:px-6 md:gap-8 md:px-8 md:pb-20 md:pt-32 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="relative z-10 mt-8 max-w-[42rem] md:mt-0">
             <div className="mb-5">
               <p className="font-serif text-[22px] text-foreground sm:text-[26px] md:text-[34px]">
@@ -104,50 +104,20 @@ function IndexPage() {
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
 
-              <a
+              {/* <a
                 href="/resume.pdf"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-accent/35 bg-[rgba(212,164,77,0.03)] px-6 py-3 text-[15px] font-medium text-foreground transition-all duration-300 hover:border-accent/60"
               >
                 <Download className="size-4" />
                 Download Resume
-              </a>
+              </a> */}
 
-              <Link
+              {/* <Link
                 to="/contact"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-accent/35 bg-[rgba(212,164,77,0.03)] px-6 py-3 text-[15px] font-medium text-foreground transition-all duration-300 hover:border-accent/60"
               >
                 Let's Connect
-              </Link>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-muted-foreground">
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="transition-colors hover:text-foreground"
-              >
-                <Github className="size-5 sm:size-6" />
-              </a>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="transition-colors hover:text-foreground"
-              >
-                <Linkedin className="size-5 sm:size-6" />
-              </a>
-              <a
-                href="mailto:hello@himani.dev"
-                aria-label="Email"
-                className="transition-colors hover:text-foreground"
-              >
-                <Mail className="size-5 sm:size-6" />
-              </a>
-              <span className="font-mono text-[10px] uppercase tracking-[0.24em]">
-                Open to opportunities
-              </span>
+              </Link> */}
             </div>
           </div>
 
@@ -253,7 +223,7 @@ function FloatingMotivationCard() {
   return (
     <div className="absolute left-[5%] top-[10%] rotate-[-4deg] hidden rounded-2xl border border-border bg-card/82 p-4 shadow-[0_20px_50px_-26px_rgba(0,0,0,0.9)] backdrop-blur-xl md:block">
       <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-accent/85">
-        Field Note
+        {/* Field Note */}
       </div>
       <div className="mt-3 space-y-1 font-serif text-[15px] italic leading-tight text-foreground/92">
         <div>Learn.</div>

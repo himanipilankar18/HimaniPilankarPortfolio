@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin, Download, Mail } from "lucide-react";
 import { useState } from "react";
 type Destination = {
   id: string;
@@ -72,18 +72,36 @@ export function SiteNav() {
             "linear-gradient(to bottom, color-mix(in oklab, var(--background) 82%, transparent), color-mix(in oklab, var(--background) 44%, transparent) 70%, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-[80rem] px-4 py-2 sm:px-5 md:px-6">
+      <div className="relative mx-auto max-w-[90rem] px-4 py-2 sm:px-5 md:px-6">
         <div className="flex items-center justify-between gap-3">
           <Link
             to="/"
-            className="shrink-0 font-serif text-[24px] font-medium tracking-tight text-foreground"
+            className="shrink-0 w-[220px] font-serif text-[24px] font-medium tracking-tight text-foreground"
           >
             Himani Pilankar
           </Link>
 
           <>
             <RouteLine activeIndex={activeIndex} />
+            <div className="hidden min-[1000px]:flex w-[120px] items-center justify-end gap-4 text-muted-foreground">
 
+              <NavIcon href="https://github.com/YOUR_GITHUB" label="GitHub">
+                <Github className="size-7" />
+              </NavIcon>
+
+              <NavIcon href="https://linkedin.com/in/YOUR_LINKEDIN" label="LinkedIn">
+                <Linkedin className="size-7" />
+              </NavIcon>
+
+              <NavIcon href="/resume.pdf" label="Resume">
+                <Download className="size-7" />
+              </NavIcon>
+
+              <NavIcon href="mailto:YOUR_EMAIL" label="Email">
+                <Mail className="size-7" />
+              </NavIcon>
+
+            </div>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="flex items-center justify-center rounded-full border border-border bg-card/70 p-2 backdrop-blur-xl min-[1000px]:hidden"
@@ -232,83 +250,57 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
     </nav>
   );
 }
+function NavIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group relative transition-colors hover:text-foreground"
+    >
+      {children}
 
-// function MobileRouteNavigator({ activeIndex }: { activeIndex: number }) {
-//   return (
-//     <div className="mt-2.5 lg:hidden">
-//       <div className="flex items-center justify-between gap-3">
-//         <div className="min-w-0">
-//           <div className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted-foreground/80">
-//             Currently
-//           </div>
-//           <div className="truncate font-serif italic text-[17px] font-medium text-foreground">
-//             {DESTINATIONS[activeIndex].label}
-//           </div>
-//         </div>
-//         <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-//           {DESTINATIONS[activeIndex].kicker}
-//         </span>
-//       </div>
-
-//       <div className="-mx-1 mt-2.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-//         <ul className="flex w-max items-center gap-4 px-1">
-//           {DESTINATIONS.map((destination, index) => {
-//             const isActive = index === activeIndex;
-
-//             return (
-//               <li key={destination.id} className="flex items-center gap-4">
-//                 <Link to={destination.to} className="flex flex-col items-center gap-1">
-//                   <span
-//                     className="block size-[7px] rounded-full transition-all"
-//                     style={{
-//                       background: isActive ? "var(--accent)" : "transparent",
-//                       border: isActive
-//                         ? "1px solid var(--accent)"
-//                         : "1px solid color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
-//                       boxShadow: isActive ? "0 0 0 5px rgba(212,164,77,0.10)" : "none",
-//                     }}
-//                   />
-//                   <span
-//                     className="font-mono text-[9px] font-medium uppercase tracking-[0.18em]"
-//                     style={{
-//                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
-//                     }}
-//                   >
-//                     {destination.label}
-//                   </span>
-//                 </Link>
-//                 {index < DESTINATIONS.length - 1 ? (
-//                   <span
-//                     aria-hidden
-//                     className="block h-px w-6"
-//                     style={{ background: "var(--border)" }}
-//                   />
-//                 ) : null}
-//               </li>
-//             );
-//           })}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
-
+      <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md border border-border bg-card px-2 py-1 text-xs opacity-0 transition-all duration-200 group-hover:opacity-100">
+        {label}
+      </span>
+    </a>
+  );
+}
 export function SiteFooter() {
   return (
-    <footer className="mt-32 border-t border-border">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="mt-20 border-t border-border">
+      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[2fr_0.8fr]">
         <div>
-          <div className="label-mono">A closing note</div>
+          <div className="label-mono"></div>
           <div className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">
             Let&apos;s build something <span className="italic text-accent">meaningful</span>.
           </div>
-          <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Always up for thoughtful conversations about engineering, design, and the products in
-            between.
+          <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+            Always up for thoughtful conversations, collaboration, or simply exchanging ideas.
           </p>
+          <a
+            href="mailto:himanipilankar18@gmail.com"
+            className="mt-4 block text-sm text-accent hover:underline "
+          >
+            himanipilankar@gmail.com
+          </a>
+          <Link
+            to="/contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/5 px-5 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5"
+          >
+            Get In Touch
+          </Link>
         </div>
         <div>
-          <div className="label-mono mb-3">Route</div>
+          <div className="label-mono mb-3"></div>
           <ul className="space-y-2 text-sm">
             {DESTINATIONS.slice(1, 6).map((destination) => (
               <li key={destination.id}>
@@ -322,49 +314,11 @@ export function SiteFooter() {
             ))}
           </ul>
         </div>
-        <div>
-          <div className="label-mono mb-3">Elsewhere</div>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a
-                href="mailto:hello@himani.dev"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                hello@himani.dev
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="/resume.pdf" className="text-muted-foreground hover:text-foreground">
-                Resume
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-5 py-5 text-xs text-muted-foreground sm:flex-row sm:px-8">
-          <span className="font-mono">
-            &copy; {new Date().getFullYear()} Himani · Field notes from an engineer&apos;s journey.
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-5 py-5 text-xs text-muted-foreground">
+          <span className="font-mono text-center">
+            &copy; {new Date().getFullYear()} Himani Pilankar · Crafted with ❤️ and endless curiosity.
           </span>
         </div>
       </div>
