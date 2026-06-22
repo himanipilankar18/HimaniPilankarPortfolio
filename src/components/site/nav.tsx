@@ -38,6 +38,43 @@ const DESTINATIONS: Destination[] = [
   { id: "contact", label: "Contact", kicker: "VIII", to: "/contact" },
 ];
 
+function SocialLinks({
+  iconSize = "size-6",
+}: {
+  iconSize?: string;
+}) {
+  return (
+    <>
+      <NavIcon
+        href="https://github.com/himanipilankar18"
+        label="GitHub"
+      >
+        <Github className={iconSize} />
+      </NavIcon>
+
+      <NavIcon
+        href="https://linkedin.com/in/YOUR_LINKEDIN"
+        label="LinkedIn"
+      >
+        <Linkedin className={iconSize} />
+      </NavIcon>
+
+      <NavIcon
+        href="/resume.pdf"
+        label="Resume"
+      >
+        <Download className={iconSize} />
+      </NavIcon>
+
+      <NavIcon
+        href="mailto:himanipilankar18@gmail.com"
+        label="Email"
+      >
+        <Mail className={iconSize} />
+      </NavIcon>
+    </>
+  );
+}
 export function SiteNav() {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
@@ -83,28 +120,12 @@ export function SiteNav() {
 
           <>
             <RouteLine activeIndex={activeIndex} />
-            <div className="hidden min-[1000px]:flex w-[120px] items-center justify-end gap-4 text-muted-foreground">
-
-              <NavIcon href="https://github.com/YOUR_GITHUB" label="GitHub">
-                <Github className="size-7" />
-              </NavIcon>
-
-              <NavIcon href="https://linkedin.com/in/YOUR_LINKEDIN" label="LinkedIn">
-                <Linkedin className="size-7" />
-              </NavIcon>
-
-              <NavIcon href="/resume.pdf" label="Resume">
-                <Download className="size-7" />
-              </NavIcon>
-
-              <NavIcon href="mailto:YOUR_EMAIL" label="Email">
-                <Mail className="size-7" />
-              </NavIcon>
-
+            <div className="hidden min-[1150px]:flex items-center justify-end gap-2 text-muted-foreground">
+              <SocialLinks />
             </div>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center rounded-full border border-border bg-card/70 p-2 backdrop-blur-xl min-[1000px]:hidden"
+              className="flex items-center justify-center rounded-full border border-border bg-card/70 p-2 backdrop-blur-xl min-[1150px]:hidden"
               aria-label="Toggle navigation"
             >
               {mobileMenuOpen ? (
@@ -116,9 +137,11 @@ export function SiteNav() {
           </>
         </div>
 
-        <div className="min-[1000px]:hidden">
+        <div className="min-[1150px]:hidden">
           {mobileMenuOpen && (
             <div className="mt-3 rounded-2xl border border-border bg-card/90 p-3 backdrop-blur-xl">
+
+              {/* Navigation Links */}
               <div className="flex flex-col gap-1">
                 {DESTINATIONS.map((destination) => (
                   <Link
@@ -137,6 +160,15 @@ export function SiteNav() {
                   </Link>
                 ))}
               </div>
+
+              {/* Divider */}
+              <div className="my-3 border-t border-border" />
+
+              {/* Social Links */}
+              <div className="flex items-center justify-center gap-5 py-2 text-muted-foreground">
+                <SocialLinks iconSize="size-5" />
+              </div>
+
             </div>
           )}
         </div>
@@ -147,7 +179,7 @@ export function SiteNav() {
 }
 
 function RouteLine({ activeIndex }: { activeIndex: number }) {
-  const width = 760;
+  const width = 680;
   const height = 40;
   const paddingX = 24;
   const innerWidth = width - paddingX * 2;
@@ -163,7 +195,7 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
   return (
     <nav
       aria-label="Journey navigation"
-      className="relative hidden flex-1 justify-center min-[1000px]:flex"
+      className="relative hidden flex-1 justify-center min-[1150px]:flex"
     >
       <div className="relative">
         <svg
@@ -232,7 +264,7 @@ function RouteLine({ activeIndex }: { activeIndex: number }) {
                   <span
                     className="font-serif italic transition-all duration-700"
                     style={{
-                      fontSize: isActive ? 16 : 14,
+                      fontSize: isActive ? 15 : 13,
                       fontWeight: isActive ? 600 : 500,
                       color: isActive ? "var(--foreground)" : "var(--muted-foreground)",
                       letterSpacing: isActive ? "0" : "0.005em",

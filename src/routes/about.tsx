@@ -24,14 +24,14 @@ function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="The Explorer · 01"
+        eyebrow=""
         title={
           <>
             I&apos;m a computer engineer in{" "}
             <em className="italic text-muted-foreground">progress</em>.
           </>
         }
-        lead="I grew up taking things apart to see how they worked. Engineering, for me, is the formal version of that instinct: a slower, more careful kind of curiosity."
+        lead="I'm a third-year Computer Engineering student at SPIT with a strong interest in Full Stack Development and Artificial Intelligence. I enjoy building applications that solve real-world problems and continuously learning through projects, hackathons, and exploration."
       />
       <PageBody>
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr]">

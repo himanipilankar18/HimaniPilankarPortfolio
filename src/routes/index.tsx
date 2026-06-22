@@ -160,61 +160,6 @@ function IndexPage() {
 
       <div id="archive" />
       <FilmStrip />
-
-      <section className="mx-auto mt-28 max-w-6xl px-5 sm:px-8">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <div className="label-mono">Selected dispatches</div>
-            <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-5xl">
-              Recent <span className="italic text-accent">expeditions</span>.
-            </h2>
-          </div>
-          <Link
-            to="/projects"
-            className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground md:inline"
-          >
-            Full portfolio →
-          </Link>
-        </div>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <Link
-              key={project.slug}
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-sm border border-border bg-card/60 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-accent/40"
-            >
-              <div
-                className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-30"
-                style={{ background: "var(--accent)" }}
-              />
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                    {String(index + 1).padStart(2, "0")} · {project.category}
-                  </span>
-                  <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
-                    {project.status}
-                  </span>
-                </div>
-                <h3 className="mt-6 font-serif text-2xl leading-tight">{project.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{project.tagline}</p>
-              </div>
-              <div className="relative mt-6 flex flex-wrap gap-1.5">
-                {project.stack.slice(0, 4).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-sm border border-border bg-background/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
     </>
   );
 }
