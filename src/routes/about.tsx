@@ -31,80 +31,87 @@ function AboutPage() {
             <em className="italic text-muted-foreground">progress</em>.
           </>
         }
-        lead="I'm a third-year Computer Engineering student at SPIT with a strong interest in Full Stack Development and Artificial Intelligence. I enjoy building applications that solve real-world problems and continuously learning through projects, hackathons, and exploration."
+        lead="A little more about my journey, interests, and the experiences shaping me as an engineer."
       />
       <PageBody>
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr]">
-          <article className="space-y-6 text-base leading-relaxed text-muted-foreground">
-            <p>
-              I&apos;m an undergraduate in Computer Engineering, drawn to the intersection of
-              full-stack development, AI systems, and product design. I care about the craft of
-              building and the architectural decisions that look small at the time and large in
-              retrospect.
-            </p>
-            <p>
-              The tools I reach for most often are React, TypeScript, Python, and Postgres. The
-              ideas I return to most often come from systems thinking, design history, and the
-              strange habit of reading documentation cover to cover.
-            </p>
-            <p>
-              I believe the best software disappears. It gets out of the way, leaves the user
-              smarter, and respects their attention. I try to build that way.
-            </p>
-            <p>
-              Outside the editor I draw, write, and walk a lot. Some of the best engineering
-              decisions happen when you are not at your desk.
-            </p>
-          </article>
-          <aside className="space-y-6">
-            {[
-              { label: "Education", value: "B.Tech, Computer Engineering · 2023 to 2027" },
-              { label: "Based in", value: "New Delhi, India" },
-              { label: "Focus", value: "Full-stack · AI agents · Product" },
-              { label: "Reading", value: "Designing Data-Intensive Applications" },
-              { label: "Recent win", value: "Top 10 finalist · National Hackathon 2025" },
-            ].map((row) => (
-              <div
-                key={row.label}
-                className="rounded-xl border border-border bg-card/40 p-5 backdrop-blur-xl"
-              >
-                <div className="label-mono">{row.label}</div>
-                <div className="mt-2 text-sm text-foreground">{row.value}</div>
-              </div>
-            ))}
-          </aside>
-        </div>
+        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
 
-        <div className="mt-20">
-          <div className="label-mono">Principles I work by</div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              {
-                title: "Clarity over cleverness",
-                body: "If a junior engineer cannot read it, I have not finished writing it.",
-              },
-              {
-                title: "Ship small, often, honest",
-                body: "Tiny improvements compound. Tiny lies do not.",
-              },
-              {
-                title: "Design is a verb",
-                body: "It is not a finishing pass. It is part of the work itself.",
-              },
-              {
-                title: "Strong opinions, loosely held",
-                body: "Have a stance. Update it the moment evidence asks you to.",
-              },
-            ].map((principle) => (
-              <div
-                key={principle.title}
-                className="rounded-xl border border-border bg-card/40 p-6 backdrop-blur-xl"
-              >
-                <h3 className="font-serif text-xl">{principle.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{principle.body}</p>
+          {/* Left Column */}
+          <article>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              Hi, I'm a third-year Computer Engineering student at
+              Sardar Patel Institute of Technology (SPIT) with a strong interest in
+              Full Stack Development and Artificial Intelligence.
+            </p>
+
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              I enjoy transforming ideas into practical applications that solve
+              real-world problems. Through projects, hackathons, and continuous
+              learning, I have explored different areas of software development while
+              strengthening my problem-solving and engineering skills.
+            </p>
+
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              Beyond academics, I enjoy exploring emerging
+              technologies, and continuously challenging myself through projects,
+              coding practice, and hands-on learning experiences.
+            </p>
+
+            <blockquote className="mt-10 border-l border-accent pl-5 font-serif italic text-xl text-foreground">
+              "The best way to learn engineering is by building."
+            </blockquote>
+          </article>
+
+          {/* Right Column */}
+          <aside className="space-y-5">
+
+            <div className="rounded-xl border border-border bg-card/40 p-6 backdrop-blur-xl">
+              <div className="label-mono">Education</div>
+
+              <div className="mt-4">
+                <p className="font-medium text-foreground">
+                  B.Tech Computer Engineering
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  SPIT • 2023 – 2027
+                </p>
               </div>
-            ))}
-          </div>
+
+              <div className="mt-5">
+                <p className="font-medium text-foreground">
+                  Diploma in Computer Engineering
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  KJ Somaiya Polytechnic • 2020 – 2023
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card/40 p-6 backdrop-blur-xl">
+              <div className="label-mono">Quick Facts</div>
+
+              <ul className="mt-4 space-y-3 text-sm text-foreground">
+                <li>10+ Projects Built</li>
+                <li>3+ Hackathons Participated</li>
+                <li>Full Stack Development</li>
+                <li>Artificial Intelligence</li>
+                <li>Mumbai, India</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card/40 p-6 backdrop-blur-xl">
+              <div className="label-mono">Current Focus</div>
+
+              <ul className="mt-4 space-y-3 text-sm text-foreground">
+                <li>Data Structures & Algorithms</li>
+                <li>Backend Development</li>
+                <li>System Design Fundamentals</li>
+                <li>AI & Machine Learning</li>
+              </ul>
+            </div>
+
+          </aside>
+
         </div>
       </PageBody>
     </>
