@@ -88,11 +88,11 @@ function AboutPage() {
                   </p>
 
                   <p className="text-sm text-muted-foreground">
-                    2023 – 2027
+                    Sep 2024– Jun 2027
                   </p>
 
                   <p className="mt-2 text-sm text-foreground">
-                    CGPA: 8.17
+                    CGPA: 8.48
                   </p>
                 </div>
 
@@ -109,7 +109,7 @@ function AboutPage() {
                   </p>
 
                   <p className="text-sm text-muted-foreground">
-                    2020 – 2023
+                    Oct 2021 – Jun 2024
                   </p>
 
                   <p className="mt-2 text-sm text-foreground">
@@ -128,7 +128,7 @@ function AboutPage() {
                     Swami Vivekanand Vidyamandir, Dombivali
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Completed in 2020
+                    Completed in Jun 2021
                   </p>
 
                   <p className="mt-2 text-sm text-foreground">

@@ -53,21 +53,21 @@ function SocialLinks({
       </NavIcon>
 
       <NavIcon
-        href="https://linkedin.com/in/YOUR_LINKEDIN"
+        href="https://www.linkedin.com/in/himani-pilankar-16933326a/"
         label="LinkedIn"
       >
         <Linkedin className={iconSize} />
       </NavIcon>
 
       <NavIcon
-        href="/resume.pdf"
+        href="Himani_resume4portfolio.pdf"
         label="Resume"
       >
         <Download className={iconSize} />
       </NavIcon>
 
       <NavIcon
-        href="mailto:himanipilankar18@gmail.com"
+        href="mailto:himanipilankar@gmail.com"
         label="Email"
       >
         <Mail className={iconSize} />
