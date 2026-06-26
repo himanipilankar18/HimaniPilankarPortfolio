@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, PageBody } from "@/components/site/page";
-import { Mail, Github, Linkedin, MapPin, FileText, ArrowUpRight } from "lucide-react";
-
+import {
+  Mail,
+  Github,
+  Linkedin,
+  MapPin,
+  FileText,
+  ArrowUpRight,
+} from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -37,45 +43,148 @@ function ContactPage() {
         eyebrow="Endpoint · 08"
         title={
           <>
-            Let's build something <em className="italic text-muted-foreground">meaningful</em>.
+            One message can start a great{" "}
+            <em className="italic text-muted-foreground">
+              collaboration
+            </em>
+            .
           </>
         }
-        lead="I'm open to internships, research collaborations, and conversations with anyone making thoughtful software. The fastest way to reach me is email."
+        lead="Whether it's an internship, a research opportunity, or an interesting idea, I'd love to hear from you."
       />
+
       <PageBody>
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border/40">
-          {channels.map(({ Icon, label, value, href }) => {
-            const inner = (
-              <div className="group flex items-center gap-5 bg-background p-6 transition-colors hover:bg-surface/60">
-                <div className="grid size-11 place-items-center rounded-full border border-border bg-card/60">
-                  <Icon className="size-4 text-foreground/80" />
-                </div>
-                <div className="flex-1">
-                  <div className="label-mono">{label}</div>
-                  <div className="mt-1 text-base text-foreground">{value}</div>
-                </div>
-                {href && (
-                  <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
-                )}
+        <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card/30 p-6 sm:p-8 lg:p-10">
+          <form className="space-y-8">
+            {/* Name + Email */}
+            <div className="grid gap-6 md:grid-cols-2">
+              <div>
+                <label className="label-mono mb-2 block">
+                  Full Name <span className="text-destructive">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Jane Doe"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                />
               </div>
-            );
-            return href ? (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
+
+              <div>
+                <label className="label-mono mb-2 block">
+                  Email Address <span className="text-destructive">*</span>
+                </label>
+
+                <input
+                  type="email"
+                  placeholder="jane@company.com"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                />
+              </div>
+            </div>
+
+            {/* Company + Designation */}
+            <div className="grid gap-6 md:grid-cols-2">
+              <div>
+                <label className="label-mono mb-2 block">
+                  Company / Organization
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Acme Technologies"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                />
+              </div>
+
+              <div>
+                <label className="label-mono mb-2 block">
+                  Designation
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Software Engineer"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                />
+              </div>
+            </div>
+
+            {/* Subject */}
+            <div>
+              <label className="label-mono mb-2 block">
+                Subject <span className="text-destructive">*</span>
+              </label>
+
+              <select className="w-full rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20">
+                <option>Internship Opportunity</option>
+                <option>Research Collaboration</option>
+                <option>Freelance Project</option>
+                <option>Open Source</option>
+                <option>General Inquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            {/* Preferred Contact */}
+            <div>
+              <label className="label-mono mb-3 block">
+                Preferred Contact Method
+              </label>
+
+              <div className="flex flex-wrap gap-6">
+                <label className="flex items-center gap-2">
+                  <input type="radio" name="contact" />
+                  <span>Email</span>
+                </label>
+
+                <label className="flex items-center gap-2">
+                  <input type="radio" name="contact" />
+                  <span>LinkedIn</span>
+                </label>
+
+                <label className="flex items-center gap-2">
+                  <input type="radio" name="contact" />
+                  <span>Phone</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="label-mono mb-2 block">
+                Message <span className="text-destructive">*</span>
+              </label>
+
+              <textarea
+                rows={8}
+                placeholder="Tell me about your opportunity, project, research idea, or anything you'd like to discuss..."
+                className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 transition-all outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+              />
+            </div>
+
+            {/* Submit */}
+            <div className="border-t border-border pt-8">
+              <button
+                type="submit"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 font-medium text-accent-foreground transition-all hover:gap-4 sm:w-auto"
               >
-                {inner}
-              </a>
-            ) : (
-              <div key={label}>{inner}</div>
-            );
-          })}
+                Send Message
+
+                <span className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </button>
+
+              <p className="mt-4 text-sm text-muted-foreground">
+                Usually responds within 24–48 hours.
+              </p>
+            </div>
+          </form>
         </div>
 
-        <p className="mt-12 max-w-2xl font-serif text-2xl leading-snug text-foreground sm:text-3xl">
-          If you've read this far, we probably already have something to talk about.
+        <p className="mx-auto mt-16 max-w-3xl text-center font-serif text-2xl leading-snug text-foreground sm:text-3xl">
+          I will get back to you soon.
         </p>
       </PageBody>
     </>
