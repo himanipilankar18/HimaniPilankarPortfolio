@@ -1,13 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, PageBody } from "@/components/site/page";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  MapPin,
-  FileText,
-  ArrowUpRight,
-} from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, FileText,ArrowUpRight} from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -40,14 +33,11 @@ function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Endpoint · 08"
+        eyebrow=""
         title={
           <>
             One message can start a great{" "}
-            <em className="italic text-muted-foreground">
-              collaboration
-            </em>
-            .
+            <em className="italic text-muted-foreground">collaboration</em>.
           </>
         }
         lead="Whether it's an internship, a research opportunity, or an interesting idea, I'd love to hear from you."
@@ -86,9 +76,7 @@ function ContactPage() {
             {/* Company + Designation */}
             <div className="grid gap-6 md:grid-cols-2">
               <div>
-                <label className="label-mono mb-2 block">
-                  Company / Organization
-                </label>
+                <label className="label-mono mb-2 block">Company / Organization</label>
 
                 <input
                   type="text"
@@ -98,9 +86,7 @@ function ContactPage() {
               </div>
 
               <div>
-                <label className="label-mono mb-2 block">
-                  Designation
-                </label>
+                <label className="label-mono mb-2 block">Designation</label>
 
                 <input
                   type="text"
@@ -128,9 +114,7 @@ function ContactPage() {
 
             {/* Preferred Contact */}
             <div>
-              <label className="label-mono mb-3 block">
-                Preferred Contact Method
-              </label>
+              <label className="label-mono mb-3 block">Preferred Contact Method</label>
 
               <div className="flex flex-wrap gap-6">
                 <label className="flex items-center gap-2">
@@ -171,14 +155,8 @@ function ContactPage() {
               >
                 Send Message
 
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </button>
-
-              <p className="mt-4 text-sm text-muted-foreground">
-                Usually responds within 24–48 hours.
-              </p>
             </div>
           </form>
         </div>
